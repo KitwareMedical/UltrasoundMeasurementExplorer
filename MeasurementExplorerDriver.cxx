@@ -1,8 +1,8 @@
 /*=========================================================================
 
-Library:   UltrasoundIntersonApps
+Library:   MeasurementExplorer
 
-Copyright 2010 Kitware Inc. 28 Corporate Drive,
+Copyright 2019 Kitware Inc. 28 Corporate Drive,
 Clifton Park, NY, 12065, USA.
 
 All rights reserved.
