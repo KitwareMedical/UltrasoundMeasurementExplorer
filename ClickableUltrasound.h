@@ -29,7 +29,8 @@ limitations under the License.
 
 class MeasurementExplorerUI;
 
-class ClickableUltrasound : public QLabel {
+class ClickableUltrasound : public QLabel
+{
   Q_OBJECT
 
 public:

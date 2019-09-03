@@ -164,7 +164,6 @@ private:
   static void __stdcall ProbeHardButtonCallback( void *instance )
     {
     MeasurementExplorerUI *oui = ( MeasurementExplorerUI* )instance;
-    std::cout << "ding!" << std::endl;
     oui->Record();
     };
 
