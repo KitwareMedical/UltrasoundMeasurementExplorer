@@ -1,8 +1,8 @@
 /*=========================================================================
 
-Library:   UltrasoundIntersonApps
+Library:   MeasurementExplorer
 
-Copyright 2010 Kitware Inc. 28 Corporate Drive,
+Copyright 2019 Kitware Inc. 28 Corporate Drive,
 Clifton Park, NY, 12065, USA.
 
 All rights reserved.
@@ -113,7 +113,8 @@ private:
   typedef itk::CastImageFilter<RFImageType, ImageType> CastFilter;
   CastFilter::Pointer m_CastFilter;
 
-  typedef itk::CastImageFilter<ImageType, IntersonArrayDeviceRF::ImageType> CastToIntersonImageTypeFilter;
+  typedef itk::CastImageFilter<ImageType, IntersonArrayDeviceRF::ImageType>
+    CastToIntersonImageTypeFilter;
   CastToIntersonImageTypeFilter::Pointer m_CastToIntersonImageTypeFilter;
 
   typedef itk::BModeImageFilter< ImageType >  BModeImageFilter;
@@ -145,12 +146,10 @@ private:
   typedef itk::ResampleImageFilter < CurvedImageType, ImageType>  ResampleImageFilterType;
   ResampleImageFilterType::Pointer m_ResampleFilter;
 
-  typedef itk::WindowedSincInterpolateImageFunction< CurvedImageType, 2 > WindowedSincInterpolatorType;
-  
+  typedef itk::WindowedSincInterpolateImageFunction< CurvedImageType, 2 >
+    WindowedSincInterpolatorType;
+
   WindowedSincInterpolatorType::Pointer m_Interpolator;
-
-
-
 
   //ui state
   bool is_frozen = false;
@@ -165,7 +164,6 @@ private:
   static void __stdcall ProbeHardButtonCallback( void *instance )
     {
     MeasurementExplorerUI *oui = ( MeasurementExplorerUI* )instance;
-    std::cout << "ding!" << std::endl;
     oui->Record();
     };
 

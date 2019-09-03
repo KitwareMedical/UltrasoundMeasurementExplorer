@@ -1,8 +1,8 @@
 ############################################################################
 #
-# Library:   UltrasoundOpticNerveUI
+# Library:   MeasurementExplorer
 #
-# Copyright 2010 Kitware Inc. 28 Corporate Drive,
+# Copyright Kitware Inc. 28 Corporate Drive,
 # Clifton Park, NY, 12065, USA.
 #
 # All rights reserved.
