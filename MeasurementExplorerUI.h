@@ -98,6 +98,8 @@ protected slots:
   void UpdateImage();
 
 private:
+
+  void UpdateNextSaveFilename();
   /** Layout for the Window */
   Ui::MainWindow *ui;
   QTimer *timer;

@@ -67,7 +67,7 @@ MeasurementExplorerUI::MeasurementExplorerUI( int numberOfThreads, int bufferSiz
   this->setWindowTitle( "Ultrasound Measurement Explorer" );
 
   this->outputFilename = QSettings("Kitware", "MeasurementExplorer").value("outputFilename", QStandardPaths::DesktopLocation + "new_ultrasound").toString();
-  this->ui->label_outputfile->setText(QFileInfo(this->outputFilename).baseName());
+  this->UpdateNextSaveFilename();
 
 
   //Links buttons and actions
@@ -343,6 +343,13 @@ QString addUniqueSuffix(const QString &fileName)
     }
 }
 
+void MeasurementExplorerUI::UpdateNextSaveFilename()
+{
+
+    this->ui->label_outputfile->setText(QFileInfo(addUniqueSuffix(this->outputFilename + "." + "png")).baseName());
+
+}
+
 
 void MeasurementExplorerUI::Record()
   {
@@ -354,6 +361,8 @@ void MeasurementExplorerUI::Record()
   if (outputFilename == "")
     {
     this->SetOutputFile();
+    //must return because SetOutputFile calls Record. This is a hack.
+    return;
     }
     
   QPixmap originalPixmap;
@@ -394,7 +403,7 @@ void MeasurementExplorerUI::Record()
 
   auto writer = WriterType::New();
 
-  this->ui->label_outputfile->setText(QFileInfo(addUniqueSuffix(this->outputFilename + "." + format)).baseName());
+  this->UpdateNextSaveFilename();
 
   writer->SetInput(tiler->GetOutput());
   writer->SetFileName((filename.chopped(4) + ".nrrd").toStdString());
@@ -596,7 +605,7 @@ void MeasurementExplorerUI::SetOutputFile()
     QString fileName = QFileDialog::getSaveFileName(this, "name for file", outputFilename, "*.png");
     QSettings("Kitware", "MeasurementExplorer").setValue("outputFilename", fileName);
     this->outputFilename = fileName;
-    this->ui->label_outputfile->setText(QFileInfo(fileName).baseName());
+    this->UpdateNextSaveFilename();
     currently_asking_for_file_this_var_is_sin = false;
     }
 
@@ -614,7 +623,9 @@ void MeasurementExplorerUI::LoadCine()
     currently_asking_for_file_this_var_is_sin = true;
 
     QString fileName = QFileDialog::getOpenFileName(this, "Cine to load", 
-      QFileInfo(outputFilename).path(), "*.nrrd");
+      QFileInfo(outputFilename).path(), "*.png");
+
+    fileName = (fileName.chopped(4) + ".nrrd");
 
     if (!QFileInfo(fileName).isFile())
       {
@@ -646,6 +657,8 @@ void MeasurementExplorerUI::LoadCine()
       currently_asking_for_file_this_var_is_sin = false;
       return;
       }
+
+    this->ui->label_loadedfile->setText(QFileInfo(fileName + "." + "nrrd").baseName());
     
     for (int i = 0; i < intersonDevice.GetRingBufferSize(); i++)
       {

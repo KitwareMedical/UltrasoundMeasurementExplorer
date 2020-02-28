@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1621</width>
-    <height>1067</height>
+    <height>1082</height>
    </rect>
   </property>
   <property name="font">
@@ -180,6 +180,13 @@
        </widget>
       </item>
       <item>
+       <widget class="QLabel" name="label_12">
+        <property name="text">
+         <string>The next Cine will be saved as:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QLabel" name="label_outputfile">
         <property name="text">
          <string/>
@@ -207,6 +214,20 @@
         </property>
         <property name="text">
          <string>Load Cine</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_13">
+        <property name="text">
+         <string>The Cine currently open is:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_loadedfile">
+        <property name="text">
+         <string/>
         </property>
        </widget>
       </item>
